@@ -8,10 +8,9 @@ export function NavLinks() {
   let [hoveredIndex, setHoveredIndex] = useState(null);
 
   return [
-    ["Male", "/male"],
-    ["Female", "/female"],
+    ["Male", "/ranking/male"],
+    ["Female", "/ranking/female"],
     ["Join", "/entry"],
-
   ].map(([label, href], index) => (
     <Link
       key={label}
@@ -49,6 +48,45 @@ export function NavLinkExtra() {
     <Link
       key={label}
       href={href}
+      className="relative -my-2 -mx-3 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-[0ms]"
+      onMouseEnter={() => setHoveredIndex(index)}
+      onMouseLeave={() => setHoveredIndex(null)}
+    >
+      <AnimatePresence>
+        {hoveredIndex === index && (
+          <motion.span
+            className="absolute inset-0 rounded-lg bg-gray-200"
+            layoutId="hoverBackground"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.15 } }}
+            exit={{
+              opacity: 0,
+              transition: { duration: 0.15, delay: 0.2 },
+            }}
+          />
+        )}
+      </AnimatePresence>
+      <span className="relative z-10">{label}</span>
+    </Link>
+  ));
+}
+
+export function AgeLinks({ gender }) {
+  let [hoveredIndex, setHoveredIndex] = useState(null);
+
+  return [
+    ["18-29", "/ranking"],
+    ["30-39", "/ranking"],
+    ["40-49", "/ranking"],
+    ["50-59", "/ranking"],
+    ["60-69", "/ranking"],
+    ["70-79", "/ranking"],
+    ["80-89", "/ranking"],
+    ["90-100", "/ranking"],
+  ].map(([label, href], index) => (
+    <Link
+      key={label}
+      href={`${href}/${gender}/${label}`}
       className="relative -my-2 -mx-3 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-[0ms]"
       onMouseEnter={() => setHoveredIndex(index)}
       onMouseLeave={() => setHoveredIndex(null)}

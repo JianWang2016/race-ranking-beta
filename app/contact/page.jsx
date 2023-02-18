@@ -1,4 +1,3 @@
-import { CallToAction } from "@/components/CallToAction";
 
 function Contact() {
   return (

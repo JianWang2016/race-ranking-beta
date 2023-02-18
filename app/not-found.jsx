@@ -43,7 +43,7 @@ const NotFound = () => {
           <div className="mt-6">
             <p>
               Please check out our{" "}
-              <Link className="linkover" href="/faqs">
+              <Link href="/faqs">
                 FAQs
               </Link>{" "}
               page for frequent asked questions.
